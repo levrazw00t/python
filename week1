@@ -15,3 +15,17 @@ print(a / b)     # частное
 print(a % b)     # остаток от деления   
 print(a ** 3)    # возведение в сепень
 print(b ** 2)    
+
+# In[2]:
+
+# Считать несколько имен людей одной строкой, записанных латиницей, через пробел, например: «Anna Maria Peter». 
+# Вывести их одной строкой в порядке возрастания «Anna Maria Peter».
+# Вывести их одной строкой в порядке убывания «Peter Maria Anna».
+
+s = str(input())
+
+sorted_list = sorted(s.split())
+print(' '.join(sorted_list))
+
+reversed_list = sorted_list[::-1]
+print(' '.join(reversed_list))
