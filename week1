@@ -8,12 +8,12 @@
 a = int(input())
 b = int(input())
 
-print(a + b)     # сумма
-print(a - b)     # разность
-print(a // b)    # целочисленное деление
-print(a / b)     # частное
-print(a % b)     # остаток от деления   
-print(a ** 3)    # возведение в сепень
+print(a + b)     
+print(a - b)     
+print(a // b)    
+print(a / b)
+print(a % b)   
+print(a ** 3)    
 print(b ** 2)    
 
 # In[2]:
@@ -22,13 +22,13 @@ print(b ** 2)
 # Вывести их одной строкой в порядке возрастания «Anna Maria Peter».
 # Вывести их одной строкой в порядке убывания «Peter Maria Anna».
 
-s = str(input())
+a = str(input())
 
-sorted_list = sorted(s.split())
-print(' '.join(sorted_list))
+list1 = sorted(s.split())
+print(' '.join(list1))
 
-reversed_list = sorted_list[::-1]
-print(' '.join(reversed_list))
+list2 = list1[::-1]
+print(' '.join(list2))
 
 
 # In[3]:
