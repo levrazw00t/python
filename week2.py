@@ -9,15 +9,14 @@
 # Внутри функции создать две вложенные функции (def) по подсчету площади и периметра фигуры. 
 # Вывести одной строкой через пробел площадь и периметр, разделенные пробелом (например, '20 18').
 
-a = int(input())
-b = int(input())
+x=int(input())
+y=int(input())
 
-def f(a, b):
-    def sq(a, b):
-        return a * b
-    def perim(a, b):
-        return (a + b) * 2
-    print(sq(a, b), perim(a, b))   
-
-f(a, b)
-
+def f(x,y):
+    def area(x,y):
+        return x*y
+    def perimeter(x,y):
+        return (x+y)*2
+    print area(x,y) perimeter(x,y)
+    
+f(x,y)
