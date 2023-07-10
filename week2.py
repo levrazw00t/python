@@ -17,6 +17,6 @@ def f(x,y):
         return x*y
     def perimeter(x,y):
         return (x+y)*2
-    print area(x,y) perimeter(x,y)
+    print (area(x,y), perimeter(x,y))
     
 f(x,y)
