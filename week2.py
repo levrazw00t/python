@@ -53,8 +53,8 @@ f(x,y)
 x=int(input())
 y=int(input())
 
-area = (lambda x, y: x * y)
-perimeter = (lambda x, y: (x + y) * 2)
+area = lambda x, y: x * y
+perimeter = lambda x, y: (x + y) * 2
 
 alist = [area, perimeter]
 
