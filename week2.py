@@ -67,8 +67,7 @@ f(x, y, *alist)
 def f1(*args):
     return area(x, y), perimeter(x, y)
 
-c = list(f1(alist, x, y))
-print(c)
+print(list(f1(alist, x, y)))
 
 print(alist[0](x, y), alist[1](x, y))
 
