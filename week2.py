@@ -53,16 +53,24 @@ f(x,y)
 x=int(input())
 y=int(input())
 
-f=[lambda x,y: x*y, lambda x,y: (x+y)*2]
+area = (lambda x, y: x * y)
+perimeter = (lambda x, y: (x + y) * 2)
 
-area=f[0](x,y)
-perimeter=f[1](x,y)
+alist = [area, perimeter]
 
-print(0, area)
-print(1, perimeter)
-print([area, perimeter])
-print(area, perimeter)
+def f(x, y, *args):
+    for i, arg in enumerate(args):
+        print(i, arg(x, y))
 
+f(x, y, *alist)
+
+def f1(*args):
+    return area(x, y), perimeter(x, y)
+
+c = list(f1(alist, x, y))
+print(c)
+
+print(alist[0](x, y), alist[1](x, y))
 
 
 
