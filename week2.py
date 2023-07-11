@@ -36,7 +36,7 @@ def f(x,y):
     area=lambda x,y: x*y
     perimeter=lambda x,y: (x+y)*2
     print (area(x,y), perimeter(x,y)
-
+           
 f(x,y)           
 
 
