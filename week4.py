@@ -7,34 +7,33 @@
 #Реализовать вывод начальных значений, взятие по 1 книге, возвращение по 1 книге с выводом текущего числа после вызова каждого из методов, меняющих значение книг.
 #Типичный ответ одной строкой: 'Boogeyman 66 65 66 Battleground 50 49 50'.
 
-class Books(object):
- 
+class Library(object):
     def __init__(self):
-        pass
+        self.books = {}
  
     def __del__(self):
-        pass
+        self.books = {}
  
-    def display_book(self, book):
-        self.book = book
-        return self.book
+    def get_quantity(self, book):
+        print(self.books[book], end=' ')
  
-    def take_one_book(self, book):
-        self.book = book - 1
-        return self.book
-    def put_one_book(self, book):
-        self.book = book + 1
-        return self.book
+    def get_book(self, book):
+        self.books[book] -= 1
+        print(self.books[book], end=' ')
+ 
+    def return_book(self, book):
+        self.books[book] += 1
+        print(self.books[book], end=' ')
  
  
-a = Books()
+a = Library()
+books_init = input().split()
  
-new_list = list(input().split())
+for i in range(0, len(books_init), 2):
+    a.books[books_init[i]] = int(books_init[i + 1])
  
-for i in new_list:
-    if i.isalpha():
-        print(i, end=" ")
-    if i.isdigit():
-        print(a.display_book(int(i)), end=" ")
-        print(a.take_one_book(a.display_book(int(i))), end=" ")
-        print(a.put_one_book(a.take_one_book(a.display_book(int(i)))), end=" ")
+for book in a.books:
+    print(book, end=' ')
+    a.get_quantity(book)
+    a.get_book(book)
+    a.return_book(book)
