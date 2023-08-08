@@ -21,6 +21,7 @@ class Books(object):
     def take_one_book(self, book):
         self.book -= 1
         return self.book
+        
     def put_one_book(self, book):
         self.book += 1
         return self.book
