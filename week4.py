@@ -19,10 +19,10 @@ class Books(object):
         return self.book
  
     def take_one_book(self, book):
-        self.book = book - 1
+        self.book -= 1
         return self.book
     def put_one_book(self, book):
-        self.book = book + 1
+        self.book += 1
         return self.book
  
  
