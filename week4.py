@@ -34,10 +34,10 @@ new_list = list(input().split())
 for i in new_list:
     if i.isalpha():
         print(i, end=" ")
-    if i.isdigit():
-        print(a.display_book(int(i)), end=" ")
-        print(a.take_one_book(a.display_book(int(i))), end=" ")
-        print(a.put_one_book(a.take_one_book(a.display_book(int(i)))), end=" ")
+    else:
+        print(a.display_book(int(i)), end=' ')
+        print(a.take(int(i)),end=' ')
+        print(a.put(int(i)), end=' ')
 
 
 #In[2]:
