@@ -18,11 +18,11 @@ class Books(object):
         self.book = book
         return self.book
  
-    def take_one_book(self, book):
+    def take_book(self, book):
         self.book -= 1
         return self.book
         
-    def put_one_book(self, book):
+    def put_book(self, book):
         self.book += 1
         return self.book
  
@@ -36,8 +36,8 @@ for i in new_list:
         print(i, end=" ")
     else:
         print(a.display_book(int(i)), end=' ')
-        print(a.take(int(i)),end=' ')
-        print(a.put(int(i)), end=' ')
+        print(a.take_book(int(i)),end=' ')
+        print(a.put_book(int(i)), end=' ')
 
 
 #In[2]:
