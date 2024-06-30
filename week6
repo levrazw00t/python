@@ -1,0 +1,24 @@
+def makehtml(fn):                                            #применение декораторов, возвращающих значение
+  def inner(*args,**kwargs):
+    return "<html>" + fn(*args,**kwargs) + "</html>"
+  return inner
+def makebody(fn):
+  def inner(*args,**kwargs):
+    return "<body>" + fn(*args,**kwargs) + "</body>"
+  return inner
+def maketitle(fn):
+  def inner(*args,**kwargs):
+    return "<title>" + fn(*args,**kwargs) + "</title>"
+  return inner  
+@makehtml
+def h0(text='hello'):
+  @maketitle
+  def h1(text='title'):
+    return text
+  @makebody
+  def h2(text='body'):
+    return text
+  text=str(h1())+str(h2())
+  return text
+print (h0())  
+<html><title>title</title><body>body</body></html>
