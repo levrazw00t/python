@@ -1,3 +1,24 @@
+head=input()
+color_Title1=input()
+color_text=input()
+Title1=input()
+text=input()
+
+def maketitle(fn):
+  def inner(*args,**kwargs):
+    return "<title>" + fn(*args,**kwargs) + "</title>"
+  return inner  
+def makestyle(fn):
+  def inner(*args,**kwargs):
+    return "<style>" + fn(*args,**kwargs) + "</style>"
+  return inner  
+
+
+
+
+
+
+
 def makehtml(fn):                                            #применение декораторов, возвращающих значение
   def inner(*args,**kwargs):
     return "<html>" + fn(*args,**kwargs) + "</html>"
