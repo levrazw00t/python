@@ -4,18 +4,83 @@ color_text=input()
 Title1=input()
 text=input()
 
+def makehtml(fn):                                            
+  def inner(*args,**kwargs):
+    print ("<html>")
+    print (fn(*args,**kwargs))
+    print("</html>")
+  return inner
+def makehead(fn):                                            
+  def inner(*args,**kwargs):
+    print ("<head>")
+    print (fn(*args,**kwargs))
+    print("</head>")
+  return inner  
 def maketitle(fn):
   def inner(*args,**kwargs):
-    return "<title>" + fn(*args,**kwargs) + "</title>"
+    print ("<title>" + fn(*args,**kwargs) + "</title>")
   return inner  
 def makestyle(fn):
   def inner(*args,**kwargs):
-    return "<style>" + fn(*args,**kwargs) + "</style>"
+    print ("<style>" + fn(*args,**kwargs) + "</style>")
   return inner  
+def makebody(fn):
+  def inner(*args,**kwargs):
+    print ("<body>")
+    print (fn(*args,**kwargs))
+    print ("</body>")
+  return inner
+def makeh1(fn):
+  def inner(*args,**kwargs):
+    print ("<h1>" + fn(*args,**kwargs) + "</h1>")
+  return inner
+def makep(fn):
+  def inner(*args,**kwargs):
+    print ("<p>" + fn(*args,**kwargs) + "</p>")
+  return inner
+
+@makehtml
+@makehead
+@maketitle
+@makestyle
+def h0(text='hello'):
+  return text
+
+
+
+  
 
 
 
 
+>>> def p(func):
+...     def inner(text):
+...         print('<p>')
+...         func(text)
+...         print('</p>')
+...     return inner
+...
+>>> def li(func):
+...     def inner(text):
+...         print('<li>')
+...         func(text)
+...     return inner
+...
+>>> @p
+... @li
+... def hello(text):
+...     print ('Hello %s'%text)
+...
+>>> hello('Python')
+<p>
+<li>
+Hello Python
+</p>
+
+
+
+
+  
 
 
 
