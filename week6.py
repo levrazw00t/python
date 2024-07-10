@@ -1,3 +1,37 @@
+# coding: utf-8
+
+# In[1]:
+
+#Считать с клавиатуры отдельными операторами:
+#- заголовок страницы (например, Hello);
+#- цвет заголовка первого уровня (например, blue);
+#- цвет текста абзаца (например, red);
+#- текст заголовка первого уровня (например, Title 1);
+#- текст статьи (например, Article text).
+
+#Использовать только латинские символы.
+#Используя декораторы, сформировать текст html-страницы для публикации статьи.
+
+#Пример входных данных:
+#Hello
+#blue
+#red
+#Title 1
+#Article text
+
+#Пример выходных данных:
+#<html>
+#<head>
+#<title>Hello</title>
+#<style>h1{color:blue}p{color:red}</style>
+#</head>
+#<body>
+#<h1>Title 1</h1>
+#<p>Article text</p>
+#</body>
+#</html>
+
+
 def mydecor1(tag):
     def wrapper(func_todecor):
         def inner(*args, **kwargs):
