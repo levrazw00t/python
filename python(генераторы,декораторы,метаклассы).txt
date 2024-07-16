@@ -1,0 +1,342 @@
+
+
+***итераторы***
+
+>>> alist=[1,2,3,3,4]
+>>> aiter=iter(alist)
+>>> aiter
+<list_iteratorobject at 0x10203a860>
+>>> biter=iter({'a':10})
+>>> biter
+<dict_keyiteratorobject at 0x102039598>
+
+>>> a=iter([1,2,3,4])
+>>> next(a)
+1
+>>> next(a)
+2
+>>> next(a)
+3
+>>> next(a)
+4
+>>> next(a)
+Traceback(most recent call last):
+File "<stdin>", line 1, in <module>
+StopIteration
+
+>>> a='cscscdvc'                                 # __next__()
+>>> aiter=iter(a)
+>>> aiter.__next__()
+'c'
+>>> aiter.__next__()
+'s'
+>>> aiter.__next__()
+'c'
+
+>>> class A(object):
+...     def__init__(self,data):
+...         self.data=data
+...         self.index=0
+...     def__iter__(self):
+...         return self
+...     def__next__(self):
+...         if self.index>=len(data):
+...             raise StopIteration
+...         self.index=self.index+1
+...             return self.data[self.index]
+...
+>>> a=A('asdddf')
+>>> iter(a)
+<__main__.Aobject at 0x10183abe0>
+>>> list(iter(a))
+[‘a', ‘s', 'd', 'd', ‘d', ‘f']
+>>> for i in a:
+... print(i)
+...
+a
+s
+d
+d
+d
+f
+
+
+>>> a=[x for x in enumerate('abcde')]             # enumerate() - нумерация элементов структуры данных
+>>> a
+[(0, 'a'), (1, 'b'), (2, 'c'), (3, 'd'), (4, 'e')]
+
+>>> sorted(list('ifmo.ru'))                       # sorted() выполнение сортировки
+['.', 'f', 'i', 'm', 'o', 'r', 'u']
+
+>>> import itertools                              #скачивание модуля
+
+>>> i1=iter([1,2,3])                              #объединение списков в один
+>>> i2=iter([11,12,13])
+>>> for i in itertools.chain(i1,i2):
+... print(i)
+...
+1
+2
+3
+11
+12
+13
+
+>>> for i in itertools.count(10):                 #бесконечный счетчик, начиная с заданного числа
+... print(i)
+... if i>15:
+... break
+...
+10
+11
+12
+13
+14
+15
+16
+
+>>> a=[1,2,3]                                     #бесконечный цикл
+>>> for i in itertools.cycle(a):
+... print(i)
+...
+
+>>> a1=[1,2,2,3,5,6,6,7]                                  #фильтрация списков
+>>> list(itertools.dropwhile(lambda x: x<4,a1))           #itertools.dropwhile(func, iterable) -элементы, начиная с первого, для которого функция вернула ложь
+[5, 6, 6, 7]
+>>> list(itertools.filterfalse(lambda x: x<4,a1))         #itertools.filterfalse(func, iterable) -все элементы, для которых функция возвращает ложь
+[5, 6, 6, 7]
+>>> list(itertools.takewhile(lambda x: x<4,a1))           #itertools.takewhile(func, iterable) -элементы до тех пор, пока функция возвращает истину
+[1, 2, 2, 3]                             
+
+>>> list(itertools.permutations(['a','b','c']))           # permutations
+[('a', 'b', 'c'), ('a', 'c', 'b'), ('b', 'a', 'c'), ('b', 'c', 'a'), ('c', 'a', 'b'), ('c', 'b', 'a')]
+
+>>> list(itertools.combinations(['a','b','c'],2))         # combinations
+[('a', 'b'), ('a', 'c'), ('b', 'c')]
+
+>>> list(itertools.combinations_with_replacement('acscvsv',2))            # combinations_with_replacement
+[('a', 'a'), ('a', 'c'), ('a', 's'), ('a', 'c'), ('a', 'v'), ('a', 's'), ('a', 'v'), ('c', 'c'), ('c', 's'), ('c', 'c'), ('c', 'v'), ('c', 's'), ('c', 'v'), ('s', 's'), ('s', 'c'), ('s', 'v'), ('s', 's'), ('s', 'v'), ('c', 'c'), ('c', 'v'), ('c', 's'), ('c', 'v'), ('v', 'v'), ('v', 's'), ('v', 'v'), ('s', 's'), ('s', 'v'), ('v', 'v')]
+
+>>> list(itertools.compress(a,[1,1,0,0,0,]))              # compress
+[0, 1]
+>>> list(itertools.compress('cdsccds',[1,1,0,0,0,]))
+['c', 'd']
+
+>>> list(itertools.product('abcd','xy'))                  #itertools.product(*iterables, repeat=1) -аналог вложенных циклов
+[('a', 'x'), ('a', 'y'), ('b', 'x'), ('b', 'y'), ('c', 'x'), ('c', 'y'), ('d', 'x'), ('d', 'y')]
+>>> dict(itertools.product('abcd','xy'))
+{'b': 'y', 'c': 'y', 'd': 'y', 'a': 'y'}
+
+>>> def f1(x,y):                                  #itertools.starmap(function, iterable) -к каждому элементу последовательности применяет функцию
+... return x+y
+...
+>>> list(itertools.starmap(f1,[(1,2),(2,3)]))
+[3, 5]
+
+>>> a1=[1,2,3,4]                                  # starmap
+>>> a2=[11,12,13,14]
+>>> a3=list(zip(a1,a2))
+>>> a3
+[(1, 11), (2, 12), (3, 13), (4, 14)]
+>>> list(itertools.starmap(f1,a3))
+[12, 14, 16, 18]
+
+
+***генераторы***
+
+>>> def genlist4():                               #генератор используется единожды
+...     alist4=range(5)
+...     for i in alist4:
+...         yield i*i
+...
+>>> mygen=genlist4()
+>>> print(mygen)
+<generator object genlist4 at 0x102036d80>
+>>> for i in mygen:
+... print (i)
+...
+0
+1
+4
+9
+16
+
+>>> def gen():                                    #бесконечный генератор
+...     while True:
+...         yield 1
+...
+>>> gens=gen()
+>>> gens
+<generator object gen at 0x102036d38>
+>>> next(gens)
+1
+>>> next(gens)
+1
+
+>>> def gen():                                    #конечный генератор
+...     a=1
+...     while a<=10:
+...         yield a
+...         a+=1
+...
+>>> gens=gen()
+>>> next(gens)
+1
+>>> next(gens)
+2
+>>> list(gens)
+[3, 4, 5, 6, 7, 8, 9, 10]                         #ибо 1 и 2 были уже получены yield сохраняется состояние функции, return обновляет
+
+
+***декораторы***
+
+>>> def p(func):
+...     def inner(text):
+...         print('<p>')
+...         func(text)
+...         print('</p>')
+...     return inner
+...
+>>> def li(func):
+...     def inner(text):
+...         print('<li>')
+...         func(text)
+...     return inner
+...
+>>> @p
+... @li
+... def hello(text):
+...     print ('Hello %s'%text)
+...
+>>> hello('Python')
+<p>
+<li>
+Hello Python
+</p>
+
+>>> def tag(name):                                #пример декоратора с параметрами
+...   def decorator(func):
+...     def inner(text):
+...       print('<%s>'%name)
+...       func(text)
+...       print(’/<%s>'%name)
+...     return inner
+...   return decorator
+...
+>>> @tag(’p')
+... @tag(’b')
+... def hello (text):
+...   print('Hello',text)
+...
+>>> hello('Python')
+<p>
+<b>
+Hello Python
+</b>
+</p>
+
+>>> class A(object):                              #@classmethod позволяет получать значение свойства или метода из класса, удобно хранить значения для экземпляров класса
+        x=5
+        @classmethod
+        def getx(cls):
+            print(cls.x)
+>>> a=A()
+>>> a.x
+5
+>>> a.x=70
+>>> a.x
+70
+>>> a.getx()
+5
+
+>>> class B(object):                              #@staticmethod не обращается к свойствам класса
+        @staticmethod
+        def getx():
+            print("Text")
+>>> b=B()
+>>> b.getx()
+Text
+
+def makehtml(fn):                                            #применение декораторов, возвращающих значение
+  def inner(*args,**kwargs):
+    return "<html>" + fn(*args,**kwargs) + "</html>"
+  return inner
+def makebody(fn):
+  def inner(*args,**kwargs):
+    return "<body>" + fn(*args,**kwargs) + "</body>"
+  return inner
+def maketitle(fn):
+  def inner(*args,**kwargs):
+    return "<title>" + fn(*args,**kwargs) + "</title>"
+  return inner  
+@makehtml
+def h0(text='hello'):
+  @maketitle
+  def h1(text='title'):
+    return text
+  @makebody
+  def h2(text='body'):
+    return text
+  text=str(h1())+str(h2())
+  return text
+print (h0())  
+<html><title>title</title><body>body</body></html>
+
+
+***метаклассы***
+
+>>> type <class 'type'>                                      #type это конструктор и type это класс.является 
+>>> type.__base__                                             классом который порождает новые классы - т.е. 
+<class 'object'>                                              метаклассом.
+ 
+                                           
+
+>>> MClass1=type('MClass1',(),{'text':'Python'})             #способ создания класса
+>>> print(MClass1) 
+<class '__main__.MClass1'> 
+>>> print(MClass1.text) 
+Python 
+>>> mc1=MClass1() 
+>>> print(mc1.text) 
+Python
+
+>>> MClass11=type('MClass11',(MClass1,),{})                  #наследование
+>>> mc2=MClass11() 
+>>> mc2.text 
+'Python'
+
+>>> def f1(self):                                            #добавление функции
+...     print(self.text) 
+... 
+>>> MClass12=type('MClass12',(MClass1,),{'f1':f1}) 
+>>> mc3=MClass12() 
+>>> mc3.f1() 
+Python
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
