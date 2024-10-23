@@ -24,7 +24,7 @@ print(b ** 2)
 
 a = str(input())
 
-list1 = sorted(s.split())
+list1 = sorted(a.split())
 print(' '.join(list1))
 
 list2 = list1[::-1]
